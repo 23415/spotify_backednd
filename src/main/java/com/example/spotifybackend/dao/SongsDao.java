@@ -18,4 +18,8 @@ public interface SongsDao extends JpaRepository<Song,Long> {
 
     @Query(value = "UPDATE SONGS SET FAVOURITE = CASE WHEN FAVOURITE = TRUE THEN FALSE WHEN FAVOURITE = FALSE THEN TRUE END WHERE ID=:id",nativeQuery = true)
     int changeFavouriteById(long id);
+
+    @Query(value = "SELECT * FROM SONGS WHERE FAVOURITE = TRUE",nativeQuery = true)
+    List<Song> getSongsByFavourite();
 }
+
